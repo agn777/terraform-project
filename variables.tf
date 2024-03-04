@@ -11,3 +11,7 @@ variable "private_subnets" {
 variable "availability_zones" {
   type        = list(string)
 }
+
+# variable "current_ip" {
+#   type = list(string)
+# }

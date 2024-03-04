@@ -43,37 +43,34 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_eip" "nat_eips" {
-  count = length(var.public_subnets)
 }
 
 resource "aws_nat_gateway" "nat" {
-  count         = length(var.public_subnets)
 
-  allocation_id = aws_eip.nat_eips[count.index].id
-  subnet_id     = aws_subnet.public_subnets[count.index].id
+  allocation_id = aws_eip.nat_eips.id
+  subnet_id     = aws_subnet.public_subnets[0].id
 
   tags = {
-    Name = "NAT Gateway ${count.index + 1}"
+    Name = "NAT Gateway"
   }
 }
 
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main_vpc.id
-  count = length(aws_subnet.private_subnets[*])
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.nat[count.index].id
+    gateway_id = aws_nat_gateway.nat.id
   }
 
   tags = {
-    Name = "Private route table ${count.index + 1}"
+    Name = "Private route table"
   }
 }
 
 resource "aws_route_table_association" "private_routes" {
   count          = length(aws_subnet.private_subnets[*])
-  route_table_id = aws_route_table.private[count.index].id
+  route_table_id = aws_route_table.private.id
   subnet_id      = aws_subnet.private_subnets[count.index].id
 }
 
