@@ -15,3 +15,7 @@ variable "availability_zones" {
 # variable "current_ip" {
 #   type = list(string)
 # }
+
+variable "hash_key" {
+  type = string
+}
