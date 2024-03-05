@@ -6,6 +6,6 @@ resource "aws_dynamodb_table" "dynamodb-table" {
 
   attribute {
     name = var.hash_key
-    type = "N"
+    type = var.hash_key_type
   }
 }

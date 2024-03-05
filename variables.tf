@@ -19,3 +19,11 @@ variable "availability_zones" {
 variable "hash_key" {
   type = string
 }
+
+variable "instance_type" {
+  type        = string
+}
+
+variable "hash_key_type" {
+  type = string
+}
