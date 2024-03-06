@@ -8,7 +8,6 @@ module "vpc" {
 module "security" {
   source = "./modules/security"
   vpc_id = module.vpc.vpc_id
-  # current_ip = var.current_ip
 }
 
 module "Lighting_database" {
@@ -36,4 +35,16 @@ module "app-servers" {
   auth_ami           = var.auth_ami
   status_ami         = var.status_ami
   key_name           = var.key_name
+}
+
+module "load_balancing" {
+  source = "./modules/load_balancing"
+  vpc_id = module.vpc.vpc_id
+  public_subnets = module.vpc.public_subnets
+  security_group_ids = module.security.security_group_ids
+  private_subnets = module.vpc.private_subnets
+  heating_instance_id = module.app-servers.heating_id
+  lighting_instance_id = module.app-servers.lighting_id
+  auth_instance_id = module.app-servers.auth_id
+  status_instance_id = module.app-servers.status_id
 }
