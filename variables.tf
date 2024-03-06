@@ -27,3 +27,23 @@ variable "instance_type" {
 variable "hash_key_type" {
   type = string
 }
+
+variable "lighting_ami" {
+  type = string
+}
+
+variable "heating_ami" {
+  type = string
+}
+
+variable "auth_ami" {
+  type = string
+}
+
+variable "status_ami" {
+  type = string
+}
+
+variable "key_name" {
+  type = string
+}

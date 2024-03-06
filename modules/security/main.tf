@@ -1,6 +1,5 @@
 resource "aws_security_group" "allow_http" {
   name        = "allow_http"
-  description = "Allow http inbound traffic"
   vpc_id      = var.vpc_id
 }
 
@@ -22,9 +21,26 @@ resource "aws_security_group_rule" "allow_http_egress" {
   security_group_id = aws_security_group.allow_http.id
 }
 
+resource "aws_security_group_rule" "allow_3000_ingress" {
+  type              = "ingress"
+  from_port         = 3000
+  to_port           = 3001
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.allow_http.id
+}
+
+resource "aws_security_group_rule" "allow_3000_egress" {
+  type              = "egress"
+  from_port         = 3000
+  to_port           = 3001
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.allow_http.id
+}
+
 resource "aws_security_group" "allow_https" {
   name        = "allow_https"
-  description = "Allow https inbound traffic"
   vpc_id      = var.vpc_id
 }
 
@@ -48,7 +64,6 @@ resource "aws_security_group_rule" "allow_https_egress" {
 
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
-  description = "Allow ssh inbound traffic"
   vpc_id      = var.vpc_id
 }
 
@@ -56,11 +71,20 @@ data "http" "current_ip" {
   url = "https://api.ipify.org"
 }
 
-resource "aws_security_group_rule" "allow_ssh" {
+resource "aws_security_group_rule" "allow_ssh_ingress" {
   type              = "ingress"
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks       = ["${data.http.current_ip.body}/32"]
+  cidr_blocks       = ["${data.http.current_ip.body}/32", "10.0.0.0/16"]
+  security_group_id = aws_security_group.allow_ssh.id
+}
+
+resource "aws_security_group_rule" "allow_ssh_egress" {
+  type              = "egress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["10.0.0.0/16"]
   security_group_id = aws_security_group.allow_ssh.id
 }

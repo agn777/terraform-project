@@ -31,4 +31,9 @@ module "app-servers" {
   security_group_ids = module.security.security_group_ids
   instance_type      = var.instance_type
   private_subnets    = module.vpc.private_subnets
+  lighting_ami       = var.lighting_ami
+  heating_ami        = var.heating_ami
+  auth_ami           = var.auth_ami
+  status_ami         = var.status_ami
+  key_name           = var.key_name
 }
