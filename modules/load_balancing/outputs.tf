@@ -17,3 +17,12 @@ output "auth_target_group_arn" {
 output "status_target_group_arn" {
   value = aws_lb_target_group.status.arn
 }
+
+output "target_group_arns" {
+  value = {
+    heating = aws_lb_target_group.heating.arn
+    lighting = aws_lb_target_group.lighting.arn
+    auth = aws_lb_target_group.auth.arn
+    status = aws_lb_target_group.status.arn
+  }
+}
