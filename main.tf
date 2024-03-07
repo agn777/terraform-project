@@ -48,3 +48,18 @@ module "load_balancing" {
   auth_instance_id = module.app-servers.auth_id
   status_instance_id = module.app-servers.status_id
 }
+
+module "autoscaling_group" {
+  source = "./modules/autoscaling_group"
+  max_size = var.max_size
+  min_size = var.min_size
+  req_size = var.req_size
+  availability_zones = var.availability_zones
+  instance_type = var.instance_type
+  vpc_security_group_ids = module.security.security_group_ids
+  lb_target_group_arns = module.load_balancing.target_group_arns
+  public_subnets = module.vpc.public_subnets
+  private_subnets = module.vpc.private_subnets
+  key_name = var.key_name
+  services = local.services
+}

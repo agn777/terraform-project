@@ -2,10 +2,6 @@ variable "vpc_id" {
   type = string
 }
 
-# variable "app_server_ids" {
-#   type = list(string)
-# }
-
 variable "public_subnets" {
   type = list(string)
 }
@@ -13,10 +9,6 @@ variable "public_subnets" {
 variable "security_group_ids" {
   type = list(string)
 }
-
-# variable "target_group_arn" {
-#   type = string
-# }
 
 variable "private_subnets" {
   type = list(string)

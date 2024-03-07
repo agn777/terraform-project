@@ -27,7 +27,7 @@ resource "aws_instance" "lighting" {
   private_ip                  = "10.0.0.34" //Private IPs so that the .env file works after destroy/apply
 
   tags = {
-    Name = "Lighting"
+    Name = "Lighting 1"
   }
 }
 
@@ -42,7 +42,7 @@ resource "aws_instance" "heating" {
   private_ip                  = "10.0.1.194" //Private IPs so that the .env file works after destroy/apply
 
   tags = {
-    Name = "Heating"
+    Name = "Heating 1"
   }
 
 }
@@ -58,7 +58,7 @@ resource "aws_instance" "status" {
   private_ip                  = "10.0.2.111" //Private IPs so that the .env file works after destroy/apply
 
   tags = {
-    Name = "Status"
+    Name = "Status 1"
   }
 }
 
@@ -73,7 +73,7 @@ resource "aws_instance" "auth" {
   private_ip                  = "10.0.8.175" //Private IPs so that the .env file works after destroy/apply
 
   tags = {
-    Name = "Auth"
+    Name = "Auth 1"
   }
 }
 
