@@ -28,10 +28,12 @@ To get this infrastructure up and running on your AWS account, follow these step
 
 1. **Clone the Repository**
 
-   Start by cloning this repository to your local machine:
+Start by cloning this repository to your local machine:
 
-   ```bash
-   git clone https://github.com/AlexGuyNichols/terraform-project.git
+```bash
+git clone https://github.com/AlexGuyNichols/terraform-project.git
+```
+
 2. **Initialize Terraform**
 
 Navigate to the project directory and initialize Terraform. This step will download the necessary providers and prepare your project for deployment:
@@ -39,12 +41,14 @@ Navigate to the project directory and initialize Terraform. This step will downl
 ```bash
 cd terraform-project
 terraform init
+```
 
 3. **Apply the Terraform Configuration**
 Apply the Terraform configuration to provision the AWS resources:
 
 ```bash
 terraform apply
+```
 
 Confirm the action when prompted, and Terraform will begin creating the infrastructure.
 
@@ -52,18 +56,19 @@ Confirm the action when prompted, and Terraform will begin creating the infrastr
 
 This project is organized into several modules, each responsible for a different aspect of the smart home network. Here's a brief overview:
 
-  modules/vpc: Configures the network environment.
-  modules/security: Defines security groups for different services.
-  modules/app-servers: Deploys EC2 instances for the microservices.
-  modules/database: Sets up DynamoDB tables for data storage.
-  modules/load_balancing: Implements load balancing for high availability.
-  modules/autoscaling_group: Manages autoscaling for the services.
-  
+modules/vpc: Configures the network environment.
+modules/security: Defines security groups for different services.
+modules/app-servers: Deploys EC2 instances for the microservices.
+modules/database: Sets up DynamoDB tables for data storage.
+modules/load_balancing: Implements load balancing for high availability.
+modules/autoscaling_group: Manages autoscaling for the services.
+
 ### Cleaning Up 🧽
 
 To avoid incurring unnecessary charges, remember to destroy the resources once you're done:
 
 ```bash
 terraform destroy
+```
 
 ### Thank you for exploring my Smart Home Terraform Infrastructure project. I hope it provides you with a solid foundation for your own Terraform and AWS adventures!
