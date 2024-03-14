@@ -35,12 +35,14 @@ To get this infrastructure up and running on your AWS account, follow these step
 2. **Initialize Terraform**
 
 Navigate to the project directory and initialize Terraform. This step will download the necessary providers and prepare your project for deployment:
+
 ```bash
 cd terraform-project
 terraform init
 
 3. **Apply the Terraform Configuration**
 Apply the Terraform configuration to provision the AWS resources:
+
 ```bash
 terraform apply
 
@@ -60,6 +62,7 @@ This project is organized into several modules, each responsible for a different
 ### Cleaning Up 🧽
 
 To avoid incurring unnecessary charges, remember to destroy the resources once you're done:
+
 ```bash
 terraform destroy
 
