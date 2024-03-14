@@ -1,25 +1,64 @@
-# Terraform project
+# Smart Home Terraform Infrastructure 🏠✨
 
-![A hero starting their journey looking at a tower](./media/images/journey.png "A hero starting their journey looking at a tower")
+Welcome to my Smart Home Terraform Infrastructure project! As an exploration into the power of Infrastructure as Code (IaC) with Terraform, this project aims to simulate a smart home network within AWS. It's designed to demonstrate how to provision and manage a network of microservices that could represent a smart home system, including services for status reporting, lighting, heating, and authorization.
 
-So far we have encountered a lot of different pieces of the Terraform journey in separation. This project will require you to bring together all the knowledge you have acquired over these past 2 weeks, in a complex infrastructure.
+## About This Project 📖
 
-Your project tasks will be delivered via the L2C platform.
+This Terraform project is a hands-on demonstration of creating and managing AWS resources to deploy a mock smart home network. The infrastructure includes a variety of AWS services, structured in a modular way for ease of understanding and scalability. Whether you're new to Terraform or looking to see it applied in a comprehensive project, this repository offers valuable insights.
 
-You can find this sprint [here.](https://l2c.northcoders.com/courses/ce-provisioning/terraform-project)
+### Features:
 
-## Requirements
+- **VPC Configuration:** A custom Virtual Private Cloud (VPC) to securely host all services.
+- **Microservices Deployment:** Separate microservices for lighting, heating, status, and authorization.
+- **Database Integration:** DynamoDB tables for persistent storage of service data.
+- **Scalability:** Autoscaling groups and load balancers to handle varying loads.
+- **Security:** Well-defined security groups to ensure the integrity of the network.
 
-The target for this project is to create a hosted network of microservices that mocks a smart home network with; a central status service, a lighting service, heating service, and authorisation service.
+## Getting Started 🚀
 
-This concept may feel very familiar but we have tweaked some of the services and they now use AWS services for data storage.
+To get this infrastructure up and running on your AWS account, follow these steps:
 
-## Tearing things down
+### Prerequisites
 
-You should run `terraform destroy` to remove everything at the end of each day, if you've created your code well it should be able to recreate each time without issue.
+- Terraform installed on your machine.
+- An AWS account and the AWS CLI configured with your credentials.
+- Basic familiarity with AWS services and Terraform syntax.
 
-## Further reading
+### Installation
 
-[Terraform directory structure tips](https://xebia.com/blog/four-tips-to-better-structure-terraform-projects/)
+1. **Clone the Repository**
 
-[Terraform best practices structure](https://www.terraform-best-practices.com/examples/terraform)
+   Start by cloning this repository to your local machine:
+
+   ```bash
+   git clone https://github.com/AlexGuyNichols/terraform-project.git
+2. **Initialize Terraform**
+
+Navigate to the project directory and initialize Terraform. This step will download the necessary providers and prepare your project for deployment:
+- cd terraform-project
+- terraform init
+
+3. **Apply the Terraform Configuration**
+Apply the Terraform configuration to provision the AWS resources:
+- terraform apply
+
+Confirm the action when prompted, and Terraform will begin creating the infrastructure.
+
+### Project Structure 🗂
+
+This project is organized into several modules, each responsible for a different aspect of the smart home network. Here's a brief overview:
+
+  modules/vpc: Configures the network environment.
+  modules/security: Defines security groups for different services.
+  modules/app-servers: Deploys EC2 instances for the microservices.
+  modules/database: Sets up DynamoDB tables for data storage.
+  modules/load_balancing: Implements load balancing for high availability.
+  modules/autoscaling_group: Manages autoscaling for the services.
+  
+### Cleaning Up 🧽
+
+To avoid incurring unnecessary charges, remember to destroy the resources once you're done:
+
+terraform destroy
+
+### Thank you for exploring my Smart Home Terraform Infrastructure project. I hope it provides you with a solid foundation for your own Terraform and AWS adventures!
