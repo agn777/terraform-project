@@ -11,16 +11,16 @@ module "security" {
 }
 
 module "Lighting_database" {
-  source     = "./modules/database"
-  hash_key   = var.hash_key
-  table_name = "Lighting"
+  source        = "./modules/database"
+  hash_key      = var.hash_key
+  table_name    = "Lighting"
   hash_key_type = var.hash_key_type
 }
 
 module "Heating_database" {
-  source     = "./modules/database"
-  hash_key   = var.hash_key
-  table_name = "Heating"
+  source        = "./modules/database"
+  hash_key      = var.hash_key
+  table_name    = "Heating"
   hash_key_type = var.hash_key_type
 }
 
@@ -38,28 +38,31 @@ module "app-servers" {
 }
 
 module "load_balancing" {
-  source = "./modules/load_balancing"
-  vpc_id = module.vpc.vpc_id
-  public_subnets = module.vpc.public_subnets
-  security_group_ids = module.security.security_group_ids
-  private_subnets = module.vpc.private_subnets
-  heating_instance_id = module.app-servers.heating_id
+  source               = "./modules/load_balancing"
+  vpc_id               = module.vpc.vpc_id
+  public_subnets       = module.vpc.public_subnets
+  security_group_ids   = module.security.security_group_ids
+  private_subnets      = module.vpc.private_subnets
+  heating_instance_id  = module.app-servers.heating_id
   lighting_instance_id = module.app-servers.lighting_id
-  auth_instance_id = module.app-servers.auth_id
-  status_instance_id = module.app-servers.status_id
+  auth_instance_id     = module.app-servers.auth_id
+  status_instance_id   = module.app-servers.status_id
 }
 
 module "autoscaling_group" {
-  source = "./modules/autoscaling_group"
-  max_size = var.max_size
-  min_size = var.min_size
-  req_size = var.req_size
-  availability_zones = var.availability_zones
-  instance_type = var.instance_type
+  source                 = "./modules/autoscaling_group"
+  max_size               = var.max_size
+  min_size               = var.min_size
+  req_size               = var.req_size
+  availability_zones     = var.availability_zones
+  instance_type          = var.instance_type
   vpc_security_group_ids = module.security.security_group_ids
-  lb_target_group_arns = module.load_balancing.target_group_arns
-  public_subnets = module.vpc.public_subnets
-  private_subnets = module.vpc.private_subnets
-  key_name = var.key_name
-  services = local.services
+  lb_target_group_arns   = module.load_balancing.target_group_arns
+  public_subnets         = module.vpc.public_subnets
+  private_subnets        = module.vpc.private_subnets
+  key_name               = var.key_name
+  services               = local.services
 }
+
+# testing a commit
+
